@@ -1,0 +1,40 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "rust-sqlx-cli"
+dynamic = ["version"]
+readme = "README.md"
+description = "Command-line utility for SQLx, the Rust SQL toolkit."
+requires-python = ">=3.10"
+license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Programming Language :: Rust",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Build Tools",
+    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Database",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Repository = "https://github.com/jules-ch/sqlx"
+Documentation = "https://docs.rs/crate/sqlx-cli/latest"
+Changelog = "https://github.com/launchbadge/sqlx/blob/main/CHANGELOG.md"
+
+[tool.maturin]
+bindings = "bin"
+manifest-path = "../Cargo.toml"
+module-name = "sqlx"
+strip = true
+cargo_metadata = true
