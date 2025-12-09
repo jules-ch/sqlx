@@ -67,6 +67,10 @@ jobs:
             target: armv7
     steps:
       - uses: actions/checkout@v4
+      - name: Install OpenSSL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libssl-dev pkg-config
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -92,6 +96,12 @@ jobs:
             target: x86
     steps:
       - uses: actions/checkout@v4
+      - name: Install OpenSSL
+        run: |
+          choco install openssl --version=3.1.4 -y
+          echo "OPENSSL_DIR=C:\Program Files\OpenSSL-Win64" >> $env:GITHUB_ENV
+          echo "OPENSSL_LIB_DIR=C:\Program Files\OpenSSL-Win64\lib" >> $env:GITHUB_ENV
+          echo "OPENSSL_INCLUDE_DIR=C:\Program Files\OpenSSL-Win64\include" >> $env:GITHUB_ENV
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -116,6 +126,10 @@ jobs:
             target: aarch64
     steps:
       - uses: actions/checkout@v4
+      - name: Install OpenSSL
+        run: |
+          brew install openssl@3
+          echo "OPENSSL_DIR=$(brew --prefix openssl@3)" >> $GITHUB_ENV
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
